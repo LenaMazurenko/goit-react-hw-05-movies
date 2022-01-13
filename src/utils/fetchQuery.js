@@ -1,28 +1,30 @@
-export default function fetchQuery(query, page) {
-  const key =
-    '24022997-1f6b45243be8e45a3cc65a02f&image_type=photo&orientation=horizontal&per_page=12';
-  return fetch(
-    `https://pixabay.com/api/?q=${query}&page=${page}&key=${key}`,
-  ).then(response => response.json());
+const BASE_URL = 'https://api.themoviedb.org/3';
+const KEY = '926288ccedb892ed59969fcc82f10d15';
+
+async function fetchQuery(param) {
+  return fetch(`${BASE_URL}/${param}?api_key=${KEY}&language=en-US`).then(
+    response => {
+      return response.ok
+        ? response.json()
+        : Promise.reject(new Error('Not found'));
+    },
+  );
 }
 
-// const BASE_URL = 'http://localhost:4040';
+export async function fetchTrendingMovies() {
+  return fetchQuery('trending/movie/day');
+  //https://api.themoviedb.org/3/   trending/all/day    ?api_key=<<api_key>>
+}
 
-// async function fetchWithErrorHandling(url = '', config = {}) {
-//   const response = await fetch(url, config);
-//   return response.ok
-//     ? await response.json()
-//     : Promise.reject(new Error('Not found'));
-// }
+export async function fetchMovie(param) {
+  return fetchQuery(`movie/${param}`);
+  //  https://api.themoviedb.org/3/   movie/{movie_id}    ?api_key=<<api_key>>&language=en-US/
+}
+//https://api.themoviedb.org/3/movie/${id}?api_key=0fbf6f1a4cbaabd00dcc7bb0f87f0a26&language=en-US
 
-// export function fetchAuthors() {
-//   return fetchWithErrorHandling(`${BASE_URL}/authors?_embed=books`);
-// }
-
-// export function fetchBooks() {
-//   return fetchWithErrorHandling(`${BASE_URL}/books`);
-// }
-
-// export function fetchBookById(bookId) {
-//   return fetchWithErrorHandling(`${BASE_URL}/books/${bookId}?_expand=author`);
+// export async function fetchMovieP() {
+//   return fetch(
+//     `https://api.themoviedb.org/3/movie/624860?api_key=926288ccedb892ed59969fcc82f10d15&language=en-US`,
+//   ).then(response => response.json());
+//   //  https://api.themoviedb.org/3/   movie/{movie_id}    ?api_key=<<api_key>>&language=en-US/
 // }

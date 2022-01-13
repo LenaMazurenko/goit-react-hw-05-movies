@@ -4,12 +4,12 @@ import Container from './components/Container/Container';
 import AppNav from './components/AppNav/AppNav';
 
 import HomePage from './pages/HomePage';
-import MoviePage from './pages/MoviePage';
+import MoviesPage from './pages/MoviesPage';
 
 import MovieDetailsPage from './pages/MovieDetailsPage';
-import MovieDetailsCastPage from './pages/MovieDetailsCastPage';
-import MovieDetailsReviewPage from './pages/MovieDetailsReviewPage';
-import NotFoundPage from './pages/NotFoundPage';
+// import MovieDetailsCastPage from './pages/MovieDetailsCastPage';
+// import MovieDetailsReviewPage from './pages/MovieDetailsReviewPage';
+// import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   return (
@@ -17,20 +17,18 @@ export default function App() {
       <AppNav />
 
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/movies" element={<MoviePage />} />
-        <Route exact path="/movies/:movieId" element={<MovieDetailsPage />} />
-        <Route
-          exact
+        <Route path="/" element={<HomePage />} />
+        <Route path="movies/" element={<MoviesPage />} />
+        <Route path="/movies/:movieId*" element={<MovieDetailsPage />} />
+        {/* <Route
           path="/movies/:movieId/cast"
           element={<MovieDetailsCastPage />}
         />
         <Route
-          exact
           path="/movies/:movieId/reviews"
           element={<MovieDetailsReviewPage />}
         />
-        <Route element={<NotFoundPage />} />
+        <Route element={<NotFoundPage />} /> */}
       </Routes>
     </Container>
   );

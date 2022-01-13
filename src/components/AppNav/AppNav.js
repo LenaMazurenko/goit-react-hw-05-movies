@@ -6,7 +6,7 @@ export default function AppNav() {
       <NavLinkEl exact to="/">
         Home
       </NavLinkEl>
-      <NavLinkEl to="/movies">Movies</NavLinkEl>
+      <NavLinkEl to="movies/">Movies</NavLinkEl>
       <hr />
     </nav>
   );
