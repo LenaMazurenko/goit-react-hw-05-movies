@@ -21,9 +21,12 @@ export default function MovieDetailsPage() {
     <Container>
       {movieDetails && <MovieDetails md={movieDetails} />}
       <hr />
+      <h3>Additional Info:</h3>
       <ul>
         <li>
           <NavLinkEl to={`/movies/${movieId}/cast`}>Cast</NavLinkEl>
+        </li>
+        <li>
           <NavLinkEl to={`/movies/${movieId}/reviews`}>Reviews</NavLinkEl>
         </li>
       </ul>

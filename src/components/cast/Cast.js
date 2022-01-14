@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchMovieCast } from '../../utils/fetchQuery';
-//import {  } from './MovieDetails.styled';
+import { Grid, Item, Image } from './Cast.styled';
 
 export default function Cast({ movieId }) {
   const [cast, setCast] = useState(null);
@@ -9,25 +9,23 @@ export default function Cast({ movieId }) {
     fetchMovieCast(movieId).then(obj => setCast([...obj.cast]));
   }, [movieId]);
 
-  console.log(cast, movieId);
-
   return (
     <>
       {cast && (
-        <ul>
+        <Grid>
           {cast.map(el => {
             return (
-              <li key={el.id}>
-                <img
+              <Item key={el.id}>
+                <Image
                   src={`https://www.themoviedb.org/t/p/w780/${el.profile_path}`}
                   alt={el.original_name}
                 />
                 <h3>{el.original_name}</h3>
                 <p>Character: {el.character}</p>
-              </li>
+              </Item>
             );
           })}
-        </ul>
+        </Grid>
       )}
     </>
   );
