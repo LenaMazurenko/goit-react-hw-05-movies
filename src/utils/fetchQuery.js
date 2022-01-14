@@ -22,10 +22,10 @@ export async function fetchMovie(param) {
 }
 
 export async function fetchMovieCast(movieId) {
-  //  return fetchQuery(`movie/${id}/credits`);
-  return fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${KEY}&language=en-US`,
-  );
+  return fetchQuery(`movie/${movieId}/credits`);
+  // return fetch(
+  //   `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${KEY}&language=en-US`,
+  // );
 }
 
 export async function fetchMovieReviews(id) {

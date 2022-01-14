@@ -2,18 +2,18 @@ import { useState, useEffect } from 'react';
 import { fetchMovieCast } from '../../utils/fetchQuery';
 //import {  } from './MovieDetails.styled';
 
-export default function MovieDetails({ movieId }) {
+export default function Cast({ movieId }) {
   const [cast, setCast] = useState(null);
 
   useEffect(() => {
-    fetchMovieCast(movieId).then(response => setCast([...response.cast]));
+    fetchMovieCast(movieId).then(obj => setCast([...obj.cast]));
   }, [movieId]);
 
   console.log(cast, movieId);
 
   return (
     <>
-      {/* {cast && (
+      {cast && (
         <ul>
           {cast.map(el => {
             return (
@@ -28,7 +28,7 @@ export default function MovieDetails({ movieId }) {
             );
           })}
         </ul>
-      )} */}
+      )}
     </>
   );
 }
