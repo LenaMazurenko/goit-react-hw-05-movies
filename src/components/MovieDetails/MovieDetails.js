@@ -1,4 +1,4 @@
-import { Img, Box } from './MovieDetails.styled';
+import { Img, Box, Ul, Li } from './MovieDetails.styled';
 
 export default function MovieDetails({ md }) {
   return (
@@ -13,11 +13,11 @@ export default function MovieDetails({ md }) {
         <h3>Overview</h3>
         <p>{md.overview}</p>
         <h3>Genres</h3>
-        <ul>
+        <Ul>
           {md.genres.map(genre => {
-            return <li key={genre.id}>{genre.name}</li>;
+            return <Li key={genre.id}>{genre.name}</Li>;
           })}
-        </ul>
+        </Ul>
       </div>
     </Box>
   );

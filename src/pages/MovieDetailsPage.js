@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import { fetchMovie } from '../utils/fetchQuery';
 import Container from '../components/Container/Container';
 import MovieDetails from '../components/MovieDetails/MovieDetails';
@@ -10,6 +10,7 @@ import { NavLinkEl } from '../components/AppNav/AppNav.styled';
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+  let navigate = useNavigate();
 
   useEffect(() => {
     fetchMovie(movieId).then(obj => {
@@ -17,8 +18,13 @@ export default function MovieDetailsPage() {
     });
   }, [movieId]);
 
+  function handleClick() {
+    navigate('/');
+  }
+
   return (
     <Container>
+      <button onClick={handleClick}>&#8617; Go back</button>
       {movieDetails && <MovieDetails md={movieDetails} />}
       <hr />
       <h3>Additional Info:</h3>
