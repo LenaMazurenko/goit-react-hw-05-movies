@@ -10,7 +10,7 @@ import { NavLinkEl } from '../components/AppNav/AppNav.styled';
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchMovie(movieId).then(obj => {
@@ -18,13 +18,9 @@ export default function MovieDetailsPage() {
     });
   }, [movieId]);
 
-  function handleClick() {
-    navigate('/');
-  }
-
   return (
     <Container>
-      <button onClick={handleClick}>&#8617; Go back</button>
+      <button onClick={() => navigate(-1)}>&#8617; Go back</button>
       {movieDetails && <MovieDetails md={movieDetails} />}
       <hr />
       <h3>Additional Info:</h3>

@@ -18,16 +18,21 @@ export async function fetchTrendingMovies() {
 
 export async function fetchMovie(param) {
   return fetchQuery(`movie/${param}`);
-  //  https://api.themoviedb.org/3/   movie/{movie_id}    ?api_key=<<api_key>>&language=en-US/
+  //https://api.themoviedb.org/3/   movie/{movie_id}    ?api_key=<<api_key>>&language=en-US//infoAboutOneMovie
 }
 
-export async function fetchMovieCast(movieId) {
-  return fetchQuery(`movie/${movieId}/credits`);
-  // return fetch(
-  //   `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${KEY}&language=en-US`,
-  // );
+export async function fetchMovieCast(id) {
+  return fetchQuery(`movie/${id}/credits`);
+  //https://api.themoviedb.org/3/movie/${id}/credits?api_key=${KEY}&language=en-US
 }
 
 export async function fetchMovieReviews(id) {
   return fetchQuery(`movie/${id}/reviews`);
+  //https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${KEY}&language=en-US
+}
+
+export async function fetchMovieByName(name) {
+  return fetch(
+    `${BASE_URL}/search/movie?api_key=${KEY}&language=en-US&query=${name}&page=1&include_adult=false`,
+  ).then(resp => resp.json());
 }
