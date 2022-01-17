@@ -1,11 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import { fetchMovie } from '../utils/fetchQuery';
 import Container from '../components/Container/Container';
 import MovieDetails from '../components/MovieDetails/MovieDetails';
-import Cast from '../components/cast/Cast';
-import Reviews from '../components/reviews/Reviews';
 import { NavLinkEl } from '../components/AppNav/AppNav.styled';
+import Loader from 'react-loader-spinner';
+import { LoaderWrapper } from '../components/Container/Container.styled';
+
+const Cast = lazy(() =>
+  import('../components/cast/Cast' /* webpackChunkName: "cast" */),
+);
+const Reviews = lazy(() =>
+  import('../components/reviews/Reviews' /* webpackChunkName: "reviews" */),
+);
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -33,10 +40,18 @@ export default function MovieDetailsPage() {
         </li>
       </ul>
       <hr />
-      <Routes>
-        <Route path="cast" element={<Cast movieId={movieId} />} />
-        <Route path="reviews" element={<Reviews movieId={movieId} />} />
-      </Routes>
+      <Suspense
+        fallback={
+          <LoaderWrapper>
+            <Loader type="Oval" color="#00BFFF" height={200} width={200} />
+          </LoaderWrapper>
+        }
+      >
+        <Routes>
+          <Route path="cast" element={<Cast movieId={movieId} />} />
+          <Route path="reviews" element={<Reviews movieId={movieId} />} />
+        </Routes>
+      </Suspense>
     </Container>
   );
 }

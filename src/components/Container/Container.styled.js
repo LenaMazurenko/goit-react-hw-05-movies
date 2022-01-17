@@ -6,3 +6,10 @@ export const Wrapper = styled.div`
   padding-left: 15px;
   padding-right: 15px;
 `;
+
+export const LoaderWrapper = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
